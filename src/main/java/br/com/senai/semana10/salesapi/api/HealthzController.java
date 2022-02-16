@@ -2,10 +2,7 @@ package br.com.senai.semana10.salesapi.api;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/healthz")
@@ -19,6 +16,17 @@ public class HealthzController {
     @GetMapping("/status")
     public String healthStatus() {
         return "Status -> All services running";
+    }
+    @GetMapping("/hello/{name}")
+    public String hello(@PathVariable String name,
+                        @RequestParam(required = false) Integer idade) {
+        String minhaMensagem = "Seja bem vindo(a) "+name;
+
+        if(idade != null) {
+            minhaMensagem+= " você tem "+idade+" anos!";
+        }
+
+        return minhaMensagem;
     }
 
     @PostMapping("/status")
