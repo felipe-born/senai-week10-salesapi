@@ -13,6 +13,12 @@ public class UserRepository {
     private Integer lastId = 0;
     private List<User> repository = new ArrayList<>();
 
+    public UserRepository() {
+        User firstUser = new User(lastId, "Admin", "admin@admin.com", "admin", "123456", 18);
+        repository.add(firstUser);
+        lastId++;
+    }
+
     public Integer insert(UserPostParameter userPostParameter) {
         User user = new User(lastId, userPostParameter);
         repository.add(user);
@@ -52,6 +58,7 @@ public class UserRepository {
 
         user.setEmail(userPostParameter.getEmail());
         user.setNome(userPostParameter.getNome());
+        user.setLogin(userPostParameter.getLogin());
         user.setSenha(userPostParameter.getSenha());
         user.setIdade(userPostParameter.getIdade());
         return userId;
@@ -67,6 +74,8 @@ public class UserRepository {
             user.setEmail(userPostParameter.getEmail());
         if (userPostParameter.getNome() != null)
             user.setNome(userPostParameter.getNome());
+        if(userPostParameter.getLogin() != null)
+            user.setLogin(userPostParameter.getLogin());
         if (userPostParameter.getSenha() != null)
             user.setSenha(userPostParameter.getSenha());
         if (userPostParameter.getIdade() != null)
@@ -82,5 +91,13 @@ public class UserRepository {
         user.setSenha(password);
 
         return userId;
+    }
+
+    public User findByLoginAndPassword(String username, String password) {
+        for (User user : repository) {
+            if (user.getLogin().equals(username) && user.getSenha().equals(password))
+                return user;
+        }
+        return null;
     }
 }

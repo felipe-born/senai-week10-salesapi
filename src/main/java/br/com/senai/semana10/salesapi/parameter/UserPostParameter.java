@@ -4,6 +4,7 @@ public class UserPostParameter {
 
     private String nome;
     private String email;
+    private String login;
     private String senha;
     private Integer idade;
 
@@ -21,6 +22,14 @@ public class UserPostParameter {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getSenha() {
