@@ -18,6 +18,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws Exception {
+/*
         String authentication = request.getHeader("Authorization");
 
         User loggedUser = authService.tryToAuthenticate(authentication);
@@ -27,8 +28,7 @@ public class SecurityInterceptor implements HandlerInterceptor {
         }
         else {
             request.setAttribute("loggedUser", loggedUser);
-        }
-
-        return loggedUser != null;
+        }*/
+        return true;
     }
 }
