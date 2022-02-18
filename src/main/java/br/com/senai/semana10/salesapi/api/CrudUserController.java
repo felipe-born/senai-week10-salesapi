@@ -32,7 +32,7 @@ public class CrudUserController {
         return repository.findById(userId);
     }
 
-    @PutMapping("/{userId}")
+    @PutMapping(value = "/{userId}")
     public ResponseEntity put(@PathVariable Integer userId,
                               @RequestBody UserPostParameter userPostParameter) {
         repository.update(userId, userPostParameter);
